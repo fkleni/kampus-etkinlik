@@ -1,1 +1,1 @@
-kampus-etkinlik-gamma.vercel.app
+https://kampus-etkinlik-gamma.vercel.app/index.html
