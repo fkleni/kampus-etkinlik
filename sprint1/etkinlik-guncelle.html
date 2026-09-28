@@ -1,45 +1,88 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Etkinlik Güncelle</title>
+  <title>Campus Events | Update Event</title>
 </head>
-<body>
+<body align="center">
   <header>
-    <h1>Etkinlik Güncelle</h1>
+    <h1>Update Event</h1>
     <nav>
-      <a href="index.html">Ana Sayfa</a> |
-      <a href="index.html#etkinlikler">Liste</a> |
-      <a href="etkinlik-ekle.html">Ekle</a> |
-      <a href="etkinlik-guncelle.html">Güncelle</a>
+      <a href="index.html">Home</a> |
+      <a href="etkinlikler.html">List</a> |
+      <a href="etkinlik-ekle.html">Add</a> |
+      <a href="etkinlik-guncelle.html">Update</a> |
+      <a href="etkinlik-sil.html">Delete</a>
     </nav>
   </header>
 
+  <br>
+
   <main>
-    <form>
-      <p>
-        <label for="ad">Etkinlik Adı</label><br>
-        <input type="text" id="ad" name="ad" value="Kariyer Günleri" required>
-      </p>
-      <p>
-        <label for="kategori">Kategori</label><br>
-        <select id="kategori" name="kategori" required>
-          <option value="seminer" selected>Seminer</option>
-          <option value="atolye">Atölye</option>
-          <option value="konser">Konser</option>
+    <form action="#" method="get">
+
+      <div>
+        <label for="eventName">Event Name</label><br>
+        <input type="text" id="eventName" name="eventName" value="Career Days" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="category">Category</label><br>
+        <select id="category" name="category" required>
+          <option value="seminar" selected>Seminar</option>
+          <option value="workshop">Workshop</option>
+          <option value="talk">Talk</option>
         </select>
-      </p>
-      <p>
-        <label for="tarih">Tarih</label><br>
-        <input type="date" id="tarih" name="tarih" value="2026-10-12" required>
-      </p>
-      <p>
-        <label for="aciklama">Açıklama</label><br>
-        <textarea id="aciklama" name="aciklama">Mezun söyleşileri</textarea>
-      </p>
-      <button type="submit">Güncelle</button>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="date">Date</label><br>
+        <input type="date" id="date" name="date" value="2026-10-12" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="time">Time</label><br>
+        <input type="time" id="time" name="time" value="10:00" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="location">Location</label><br>
+        <input type="text" id="location" name="location" value="Innovation Laboratory" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="quota">Quota</label><br>
+        <input type="number" id="quota" name="quota" min="1" value="45" required>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="description">Description</label><br>
+        <textarea id="description" name="description" rows="4" cols="30" required>Alumni talks and networking.</textarea>
+      </div>
+
+      <br>
+
+      <button type="submit">Update</button>
+
     </form>
   </main>
 
+  <br><br>
+
+  <footer>
+    <p>Fadime Kovalık · 2026</p>
+  </footer>
 </body>
 </html>
