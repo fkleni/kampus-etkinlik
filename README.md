@@ -1,27 +1,52 @@
-# Campus Events — Sprint 1
+# Campus Events
 
-The **HTML skeleton** of a web application where campus seminars, workshops and talks are listed, viewed, added, updated and deleted.
+A web application where campus seminars, workshops and talks are listed, viewed, added, updated and deleted. Built step by step, one sprint per week.
 
 - **Student:** Fadime Kovalık — 2321032006
-- **Course:** Web Technologies and Programming, Sprint 1 (HTML and Git)
+- **Course:** Web Technologies and Programming
 - **Live URL:** https://kampus-etkinlik-gamma.vercel.app/index.html
 
-## Pages completed in this sprint
+## Sprint 2 — CSS and Responsive Design (current)
+
+Sprint 1's HTML was kept intact and styled with CSS. The pages work on phones and on desktop (mobile first).
 
 | File | Content |
 | --- | --- |
-| `sprint1/index.html` | Introduction to the app, two upcoming events, links to the other pages |
-| `sprint1/etkinlikler.html` | Event list (each event in its own cell: name, category · date, link) |
-| `sprint1/etkinlik-detay.html` | Single event: poster with caption, key facts (date, location, quota), description |
-| `sprint1/etkinlik-ekle.html` | New event form (name, category, date, time, location, quota, description) |
-| `sprint1/etkinlik-guncelle.html` | Same form, fields pre-filled with `value`; button says "Update" |
-| `sprint1/etkinlik-sil.html` | Extra page: list of events with a delete button for each |
+| `sprint2/css/2321032006.css` | All styles; colors and font come from the student number |
+| `sprint2/index.html` | Introduction, campus image, two upcoming events as cards |
+| `sprint2/etkinlikler.html` | All events as cards (one column on phones, several on wide screens) |
+| `sprint2/etkinlik-detay.html` | Framed event poster with caption on the left, details (`dl`) on the right; stacked on phones |
+| `sprint2/etkinlik-ekle.html` | New event form, labels above fields, invalid fields turn red |
+| `sprint2/etkinlik-guncelle.html` | Same form with pre-filled values |
+| `sprint2/etkinlik-sil.html` | Extra page: event cards with a delete button |
+
+### Student number design
+
+- `--no: 2321032006`
+- `--ton: mod(2321032006, 360)` = **46**, so the palette is built from `hsl(46 ...)`
+- Last digit **6** → font: **Courier New**
+
+### Notes
+
+- Sprint 1 tables became `section > article` cards using `display: grid`.
+- All colors and spacing in the CSS use `var(--...)` variables.
+- `viewport` meta tag is in every page; no horizontal scrolling on phones.
+- Buttons and links are at least 44px tall for touch.
+- Images (`kampus-genel.jpg`, `career-days.jpg`) scale down with the screen; the event poster has a border.
+- Deployed on Vercel (Framework: Other, Root Directory: `sprint2`).
+
+## Sprint 1 — HTML and Git
+
+Pure HTML skeleton of the same pages (no CSS, no JavaScript), kept in `sprint1/` and tagged `sprint-01`.
 
 ## Project structure
 
 ```
 kampus-etkinlik/
   sprint1/
+  sprint2/
+    css/
+      2321032006.css
     index.html
     etkinlikler.html
     etkinlik-detay.html
@@ -29,15 +54,7 @@ kampus-etkinlik/
     etkinlik-guncelle.html
     etkinlik-sil.html
     kampus-genel.jpg
+    career-days.jpg
   .gitignore
   README.md
 ```
-
-## Notes
-
-- Pure HTML only: no CSS, no JavaScript, no data saving in this sprint.
-- Semantic tags are used (`header`, `nav`, `main`, `section`, `article`, `figure`, `figcaption`, `footer`, `time`, `dl`).
-- Every page has a single `h1` and a working navigation menu with no broken links.
-- Every form field has a visible `label`, and `required` validation works in the browser.
-- File names contain no Turkish characters or spaces, so links do not break.
-- Deployed on Vercel (Framework: Other, Root Directory: `sprint1`).
