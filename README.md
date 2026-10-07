@@ -1,43 +1,46 @@
+**Live URL:** https://kampus-etkinlik-gamma.vercel.app/index.html
+
 # Campus Events
 
-A web application where campus seminars, workshops and talks are listed, viewed, added, updated and deleted. Built step by step, one sprint per week.
+A web application where campus seminars, workshops and talks are listed, viewed, added and updated. Built step by step, one sprint per week.
 
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
-- **Live URL:** https://kampus-etkinlik-gamma.vercel.app/index.html
 
-## Sprint 2 — CSS and Responsive Design (current)
+## Sprint 3 — JavaScript and DOM (current)
 
-Sprint 1's HTML was kept intact and styled with CSS. The pages work on phones and on desktop (mobile first).
+The pages are now generated from data: events live in one place (`data.js`), and JavaScript builds the cards, search, detail page and form messages. No `localStorage`, no frameworks, no jQuery; data is not saved yet.
 
 | File | Content |
 | --- | --- |
-| `sprint2/css/2321032006.css` | All styles; colors and font come from the student number |
-| `sprint2/index.html` | Introduction, campus image, two upcoming events as cards |
-| `sprint2/etkinlikler.html` | All events as cards (one column on phones, several on wide screens) |
-| `sprint2/etkinlik-detay.html` | Framed event poster with caption on the left, details (`dl`) on the right; stacked on phones |
-| `sprint2/etkinlik-ekle.html` | New event form, labels above fields, invalid fields turn red |
-| `sprint2/etkinlik-guncelle.html` | Same form with pre-filled values |
-| `sprint2/etkinlik-sil.html` | Extra page: event cards with a delete button |
+| `sprint3/js/data.js` | Array of 6 events (`id`, `title`, `category`, `date`, `time`, `location`, `description`, `capacity`) and date helpers |
+| `sprint3/js/event-list.js` | Creates cards from data; home page shows the 2 nearest events (`data-limit`); list page has search + category filter |
+| `sprint3/js/event-detail.js` | Reads `?id=` from the address and shows the right event, or an error box |
+| `sprint3/js/event-form.js` | Add and update forms: validation, error messages, success message with the created object |
+| `sprint3/index.html` | Introduction, campus image, two upcoming events (generated) |
+| `sprint3/etkinlikler.html` | Search box, category select, result line, all events (generated) |
+| `sprint3/etkinlik-detay.html` | Event details by id: poster, details, description, update button |
+| `sprint3/etkinlik-ekle.html` | New event form with its own validation messages |
+| `sprint3/etkinlik-guncelle.html` | Same form, filled with the event selected by `?id=` |
 
-### Student number design
+### How to run
 
-- `--no: 2321032006`
-- `--ton: mod(2321032006, 360)` = **46**, so the palette is built from `hsl(46 ...)`
-- Last digit **6** → font: **Courier New**
+Modules do not work with `file://`. Open the project with the VS Code **Live Server** extension (right click `index.html` → Open with Live Server), for example `http://127.0.0.1:5500/sprint3/`.
 
 ### Notes
 
-- Sprint 1 tables became `section > article` cards using `display: grid`.
-- All colors and spacing in the CSS use `var(--...)` variables.
-- `viewport` meta tag is in every page; no horizontal scrolling on phones.
-- Buttons and links are at least 44px tall for touch.
-- Images (`kampus-genel.jpg`, `career-days.jpg`) scale down with the screen; the event poster has a border.
-- Deployed on Vercel (Framework: Other, Root Directory: `sprint2`).
+- Each page loads only its own module with `<script type="module">`; `data.js` is imported by the others.
+- The menu has 3 links (Home, Events, Add); the update page is reached from the event detail page.
+- Dates are stored as `DD-MM-YYYY` and shown as "October 12, 2026".
+- Deployed on Vercel (Framework: Other, Root Directory: `sprint3`).
+
+## Sprint 2 — CSS and Responsive Design
+
+Styled with `sprint2/css/2321032006.css`: `--no: 2321032006`, `--ton` = 46, font Courier New (last digit 6). Tables became cards, pages work on phones.
 
 ## Sprint 1 — HTML and Git
 
-Pure HTML skeleton of the same pages (no CSS, no JavaScript), kept in `sprint1/` and tagged `sprint-01`.
+Pure HTML skeleton (no CSS, no JavaScript), kept in `sprint1/` and tagged `sprint-01`.
 
 ## Project structure
 
@@ -45,14 +48,19 @@ Pure HTML skeleton of the same pages (no CSS, no JavaScript), kept in `sprint1/`
 kampus-etkinlik/
   sprint1/
   sprint2/
+  sprint3/
     css/
       2321032006.css
+    js/
+      data.js
+      event-list.js
+      event-detail.js
+      event-form.js
     index.html
     etkinlikler.html
     etkinlik-detay.html
     etkinlik-ekle.html
     etkinlik-guncelle.html
-    etkinlik-sil.html
     kampus-genel.jpg
     career-days.jpg
   .gitignore

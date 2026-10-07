@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/2321032006.css">
+  <script type="module" src="js/event-list.js"></script>
+  <title>Campus Events | Event List</title>
+</head>
+<body>
+  <header>
+    <h1>Event List</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="etkinlikler.html">Events</a>
+      <a href="etkinlik-ekle.html">Add</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>All Campus Events</h2>
+      <form id="filter-form" class="filter">
+        <div>
+          <label for="search">Search events</label>
+          <input type="search" id="search" name="search" placeholder="e.g. workshop, career">
+        </div>
+        <div>
+          <label for="category-filter">Category</label>
+          <select id="category-filter" name="category">
+            <option value="">All</option>
+          </select>
+        </div>
+      </form>
+      <p id="result" role="status"></p>
+      <div class="cards" id="event-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Fadime Kovalık · 2026</p>
+  </footer>
+</body>
+</html>

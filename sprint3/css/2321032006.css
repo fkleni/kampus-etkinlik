@@ -1,0 +1,97 @@
+/* Fadime Kovalık — 2321032006 */
+:root {
+  --no: 2321032006;
+  --ton: mod(var(--no), 360);
+  --renk-ana: hsl(var(--ton) 65% 38%);
+  --renk-zemin: hsl(var(--ton) 30% 97%);
+  --font: "Courier New", monospace;
+  --bosluk-m: 1rem;
+  --kose: 8px;
+}
+body { font-family: var(--font); }
+
+/* Extra tokens derived from the palette above */
+:root {
+  --renk-yazi: hsl(var(--ton) 30% 12%);
+  --renk-koyu: hsl(var(--ton) 65% 22%);
+  --renk-kenar: hsl(var(--ton) 20% 82%);
+  --renk-kart: hsl(0 0% 100%);
+  --renk-acik: hsl(0 0% 100%);
+  --renk-hata: hsl(0 70% 42%);
+  --renk-hata-zemin: hsl(0 80% 97%);
+  --renk-basari: hsl(140 60% 26%);
+  --renk-basari-zemin: hsl(140 45% 95%);
+  --bosluk-k: calc(var(--bosluk-m) / 2);
+  --bosluk-b: calc(var(--bosluk-m) * 2);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 1.05rem; line-height: 1.5; color: var(--renk-yazi); background: var(--renk-zemin); overflow-wrap: break-word; }
+h1, h2, h3 { line-height: 1.25; }
+h1 { margin: 0 0 var(--bosluk-k); font-size: 1.6rem; }
+h2 { margin: 0 0 var(--bosluk-m); font-size: 1.3rem; }
+h3 { margin: 0 0 var(--bosluk-k); font-size: 1.1rem; }
+a { color: var(--renk-koyu); font-weight: bold; }
+img { display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: var(--kose); }
+figure { margin: 0 0 var(--bosluk-m); }
+figcaption { margin-top: var(--bosluk-k); font-style: italic; }
+
+header { padding: var(--bosluk-m); text-align: center; color: var(--renk-acik); background: var(--renk-ana); }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 var(--bosluk-m); }
+nav a { padding: var(--bosluk-k) 0; font-size: 1.2rem; color: var(--renk-acik); }
+main { max-width: 60rem; margin: 0 auto; padding: var(--bosluk-m); text-align: center; }
+section { margin-bottom: var(--bosluk-b); }
+footer { padding: var(--bosluk-m); text-align: center; border-top: 1px solid var(--renk-kenar); }
+
+/* Cards: one column on phones, several columns on wide screens */
+.cards { display: grid; grid-template-columns: 1fr; gap: var(--bosluk-m); }
+.cards > article { padding: var(--bosluk-m); background: var(--renk-kart); border: 1px solid var(--renk-kenar); border-radius: var(--kose); }
+.cards p { margin: 0 0 var(--bosluk-k); }
+.cards a { display: inline-block; padding: var(--bosluk-k) 0; }
+
+/* Filter (event list page) */
+.filter { display: grid; grid-template-columns: 1fr; gap: var(--bosluk-m); margin-bottom: var(--bosluk-m); padding: var(--bosluk-m); text-align: left; background: var(--renk-kart); border: 1px solid var(--renk-kenar); border-radius: var(--kose); }
+.filter > div { margin: 0; }
+.filter input, .filter select { max-width: none; }
+#result { margin: 0 0 var(--bosluk-m); font-weight: bold; color: var(--renk-basari); }
+
+/* Detail page */
+.detail { display: grid; grid-template-columns: 1fr; gap: var(--bosluk-m); }
+.detail figure { margin: 0; }
+.detail img { border: 3px solid var(--renk-ana); }
+.detail h2 { margin: 0 0 var(--bosluk-k); }
+dl { margin: 0 0 var(--bosluk-m); text-align: left; padding: var(--bosluk-m); background: var(--renk-kart); border: 1px solid var(--renk-kenar); border-radius: var(--kose); }
+dt { font-weight: bold; }
+dd { margin: 0 0 var(--bosluk-k); }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bosluk-m); }
+
+/* Forms */
+form > div { margin-bottom: var(--bosluk-m); }
+label { display: block; margin-bottom: var(--bosluk-k); font-weight: bold; }
+input, select, textarea { display: block; margin: 0 auto; width: 100%; max-width: 32rem; min-height: 2.75rem; padding: var(--bosluk-k); font: inherit; color: inherit; background: var(--renk-kart); border: 2px solid var(--renk-kenar); border-radius: var(--kose); }
+textarea { min-height: 8rem; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--renk-ana); outline-offset: 2px; }
+[aria-invalid="true"] { border-color: var(--renk-hata); background: var(--renk-hata-zemin); }
+.field-error { display: block; max-width: 32rem; margin: var(--bosluk-k) auto 0; font-size: 0.95rem; text-align: left; color: var(--renk-hata); }
+
+/* Buttons and link buttons */
+button, .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 var(--bosluk-b); font: inherit; font-size: 1.2rem; font-weight: bold; text-decoration: none; color: var(--renk-acik); background: var(--renk-ana); border: 0; border-radius: var(--kose); cursor: pointer; }
+.button { padding: var(--bosluk-k) var(--bosluk-b); }
+
+/* Messages */
+.message { max-width: 32rem; margin: var(--bosluk-m) auto 0; padding: var(--bosluk-m); text-align: left; border: 2px solid; border-radius: var(--kose); }
+.message p { margin: 0 0 var(--bosluk-k); }
+.message.error { color: var(--renk-hata); background: var(--renk-hata-zemin); border-color: var(--renk-hata); }
+.message.success { background: var(--renk-basari-zemin); border-color: var(--renk-basari); }
+.message.success p { font-weight: bold; color: var(--renk-basari); }
+pre { margin: 0; font: inherit; font-size: 0.95rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (min-width: 40rem) {
+  header { padding: var(--bosluk-m) var(--bosluk-b); }
+  h1 { font-size: 2rem; }
+  .cards { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+  .filter { grid-template-columns: 2fr 1fr; }
+  .detail { grid-template-columns: 1fr 1fr; }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--bosluk-k) var(--bosluk-m); }
+  dd { margin: 0; }
+}

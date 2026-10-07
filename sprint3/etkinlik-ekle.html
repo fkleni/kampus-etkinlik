@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/2321032006.css">
+  <script type="module" src="js/event-form.js"></script>
+  <title>Campus Events | Add Event</title>
+</head>
+<body>
+  <header>
+    <h1>Add Event</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="etkinlikler.html">Events</a>
+      <a href="etkinlik-ekle.html">Add</a>
+    </nav>
+  </header>
+
+  <main>
+    <p id="form-intro">Fields marked with * are required. This sprint does not save data; the result is shown below the form.</p>
+    <form id="event-form" action="#" method="get" novalidate>
+      <div>
+        <label for="eventName">Event Name *</label>
+        <input type="text" id="eventName" name="eventName" aria-describedby="eventName-error" required>
+        <span class="field-error" id="eventName-error"></span>
+      </div>
+      <div>
+        <label for="category">Category *</label>
+        <select id="category" name="category" aria-describedby="category-error" required><option value="">Select...</option><option value="Seminar">Seminar</option><option value="Workshop">Workshop</option><option value="Talk">Talk</option></select>
+        <span class="field-error" id="category-error"></span>
+      </div>
+      <div>
+        <label for="date">Date *</label>
+        <input type="date" id="date" name="date" aria-describedby="date-error" required>
+        <span class="field-error" id="date-error"></span>
+      </div>
+      <div>
+        <label for="time">Time *</label>
+        <input type="time" id="time" name="time" aria-describedby="time-error" required>
+        <span class="field-error" id="time-error"></span>
+      </div>
+      <div>
+        <label for="location">Location *</label>
+        <input type="text" id="location" name="location" aria-describedby="location-error" required>
+        <span class="field-error" id="location-error"></span>
+      </div>
+      <div>
+        <label for="quota">Quota</label>
+        <input type="number" id="quota" name="quota" min="1" max="1000" aria-describedby="quota-error">
+        <span class="field-error" id="quota-error"></span>
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+    <div id="form-message"></div>
+  </main>
+
+  <footer>
+    <p>Fadime Kovalık · 2026</p>
+  </footer>
+</body>
+</html>
