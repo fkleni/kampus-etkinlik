@@ -6,6 +6,10 @@ A web application where campus seminars, workshops and talks are listed, viewed,
 
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
+<<<<<<< HEAD
+=======
+- **Live URL:** [https://kampus-etkinlik-gamma.vercel.app/index.html](https://kampus-etkinlik-sprint2-iota.vercel.app/)
+>>>>>>> 3c41d00ba7d60f98edcc6318da33adb5824c84ef
 
 ## Sprint 3 — JavaScript and DOM (current)
 
