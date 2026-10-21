@@ -36,8 +36,9 @@ img { display: block; margin: 0 auto; max-width: 100%; height: auto; border-radi
 figure { margin: 0 0 var(--bosluk-m); }
 figcaption { margin-top: var(--bosluk-k); font-style: italic; }
 
-header { padding: var(--bosluk-m); text-align: center; color: var(--renk-acik); background: var(--renk-ana); }
-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 var(--bosluk-k); }
+header { padding: var(--bosluk-m) var(--bosluk-m) 0; text-align: center; color: var(--renk-acik); background: var(--renk-ana); }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 var(--bosluk-k); padding: 0 var(--bosluk-m) var(--bosluk-m); background: var(--renk-ana); }
+header p { margin: 0 0 var(--bosluk-k); }
 nav a { padding: var(--bosluk-k) var(--bosluk-m); font-size: 1.2rem; color: var(--renk-acik); }
 nav a[aria-current="page"] { color: var(--renk-koyu); background: var(--renk-acik); border-radius: var(--kose); }
 main { max-width: 60rem; margin: 0 auto; padding: var(--bosluk-m); text-align: center; }
@@ -54,7 +55,7 @@ footer { padding: var(--bosluk-m); text-align: center; border-top: 1px solid var
 .filter { display: grid; grid-template-columns: 1fr; gap: var(--bosluk-m); margin-bottom: var(--bosluk-m); padding: var(--bosluk-m); text-align: left; background: var(--renk-kart); border: 1px solid var(--renk-kenar); border-radius: var(--kose); }
 .filter > div { margin: 0; }
 .filter input, .filter select { max-width: none; }
-#result { margin: 0 0 var(--bosluk-m); font-weight: bold; color: var(--renk-basari); }
+#result, .result { margin: 0 0 var(--bosluk-m); font-weight: bold; color: var(--renk-basari); }
 
 /* Detail page */
 .detail { display: grid; grid-template-columns: 1fr; gap: var(--bosluk-m); }
@@ -84,7 +85,8 @@ button, .button { display: inline-flex; align-items: center; justify-content: ce
 .message.error { color: var(--renk-hata); background: var(--renk-hata-zemin); border-color: var(--renk-hata); }
 
 @media (min-width: 40rem) {
-  header { padding: var(--bosluk-m) var(--bosluk-b); }
+  header { padding: var(--bosluk-m) var(--bosluk-b) 0; }
+  nav { padding: 0 var(--bosluk-b) var(--bosluk-m); }
   h1 { font-size: 2rem; }
   .cards { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
   .filter { grid-template-columns: 2fr 1fr; }

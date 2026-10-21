@@ -1,13 +1,42 @@
-**Live URL:** https://kampus-etkinlik-gamma.vercel.app/index.html
+**Live URL:** https://kampus-etkinlik-sprint2-iota.vercel.app/
 
 # Campus Events (frontend)
 
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
 
-## Sprint 4 — Vite, TypeScript and React (current)
+## Sprint 5 — React Components (current)
 
-The same site, now built with React and TypeScript in the `frontend` folder. Data is typed, filter functions are pure, and the five pages live in one `App.tsx`. The open page and the selected event are kept in state (no React Router yet).
+The same site as Sprint 4, but the single `App.tsx` is split into 9 components. Each component has its own file, receives data through typed `props` (`interface`), and reports events to `App` with callback props. All state stays in `App` (lifting state up). The screen is identical to Sprint 4.
+
+```
+App  (state: page, selectedId, searchText, category)
+ ├─ Header        title, text?
+ ├─ Navigation    current, onNavigate
+ ├─ main (open page)
+ │   ├─ EventList    events, onShowDetail, emptyText?   → EventCard (event, onShowDetail)
+ │   ├─ EventFilter  searchText, category, categories, onSearchChange, onCategoryChange
+ │   ├─ EventDetail  event, onBack, onEdit
+ │   └─ EventForm    onSubmit, submitLabel?
+ └─ Footer
+```
+
+| File | What it does |
+| --- | --- |
+| `components/layout/Header.tsx` | Shows the page title and an optional sub text. |
+| `components/layout/Navigation.tsx` | Draws the menu and tells `App` which page was clicked (`onNavigate`). |
+| `components/layout/Footer.tsx` | Footer without props. |
+| `components/events/EventCard.tsx` | One event card; "View details" calls `onShowDetail(id)`. |
+| `components/events/EventList.tsx` | Draws one `EventCard` per event, or a message when the list is empty. Used by the home page and the events page. |
+| `components/events/EventFilter.tsx` | Search box and category select; values come from props, changes go up with callbacks. |
+| `components/events/EventDetail.tsx` | One event with poster, details and the Back / Update buttons. |
+| `components/forms/EventForm.tsx` | The form used by both Add and Update pages; `onSubmit` is given by `App`. |
+| `types/page.ts` | The `PageName` type. |
+| `utils/format-date.ts` | `formatDate`, shared by `EventCard` and `EventDetail`. |
+
+## Sprint 4 — Vite, TypeScript and React
+
+React + TypeScript project in the `frontend` folder: typed data, pure filter functions, state instead of a router. Tagged `sprint-04`.
 
 | File | What it does |
 | --- | --- |
@@ -18,9 +47,9 @@ The same site, now built with React and TypeScript in the `frontend` folder. Dat
 | `vite.config.ts` | Vite settings, including the React plugin. |
 | `index.html` | The only HTML page; it contains an empty `div#root`. |
 | `src/main.tsx` | Starts React and draws `App` into `div#root`. |
-| `src/App.tsx` | The main component: all five pages, the menu and the page state. |
+| `src/App.tsx` | The main component: keeps the state and puts the components together. |
 | `src/App.css` | All styles (Sprint 3 CSS, colors and font come from the student number). |
-| `src/index.css` | Global styles; empty in this sprint. |
+| `src/index.css` | Global styles; empty. |
 | `src/types/campus-event.ts` | The `Category` and `CampusEvent` types. |
 | `src/data/events.ts` | The 6 typed events. |
 | `src/utils/filter-events.ts` | Pure functions: `searchEvents`, `filterByCategory`, `findEventById`. |
@@ -36,10 +65,4 @@ npm run build    # must finish without errors
 npm run preview  # open the built site
 ```
 
-### Notes
-
-- Pages: Home (2 nearest events), Events (search + category), Event detail, Add, Update.
-- Search and category are state; the filtered list is calculated on every render.
-- `useEffect` changes the browser tab title when the page changes.
-- Forms are only a view in this sprint; nothing is saved.
-- Deployed on Vercel (Framework Preset: Vite, Root Directory: `frontend`).
+Deployed on Vercel (Framework Preset: Vite, Root Directory: `frontend`).
