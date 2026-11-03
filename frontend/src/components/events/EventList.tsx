@@ -1,28 +1,14 @@
 import type { CampusEvent } from "../../types/campus-event";
 import EventCard from "./EventCard";
 
-interface EventListProps {
-  events: CampusEvent[];
-  onShowDetail: (id: string) => void;
-  emptyText?: string;
-}
+interface Props { events: CampusEvent[] }
 
-function EventList({ events, onShowDetail, emptyText = "No events." }: EventListProps) {
-  if (events.length === 0) {
-    return (
-      <p className="result" role="status">
-        {emptyText}
-      </p>
-    );
-  }
-
+function EventList({ events }: Props) {
+  if (events.length === 0) return <p>No events found.</p>;
   return (
     <div className="cards">
-      {events.map((event) => (
-        <EventCard key={event.id} event={event} onShowDetail={onShowDetail} />
-      ))}
+      {events.map((e) => <EventCard key={e.id} event={e} />)}
     </div>
   );
 }
-
 export default EventList;

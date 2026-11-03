@@ -97,3 +97,30 @@ button, .button { display: inline-flex; align-items: center; justify-content: ce
 
 /* Detail page without a poster */
 .detail.no-image { grid-template-columns: 1fr; }
+
+/* Error text + invalid fields */
+.error-text { display: block; margin-top: var(--bosluk-k); font-size: 0.95rem; text-align: center; color: var(--renk-hata); }
+input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
+  border-color: var(--renk-hata); background: var(--renk-hata-zemin);
+}
+
+/* Success message */
+.message.success { color: var(--renk-basari); background: var(--renk-basari-zemin); border-color: var(--renk-basari); }
+
+/* Auth page links */
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bosluk-m); margin-top: var(--bosluk-m); }
+
+/* Admin table */
+.table { width: 100%; margin-top: var(--bosluk-m); border-collapse: collapse; text-align: left; background: var(--renk-kart); }
+.table th { padding: var(--bosluk-k); color: #fff; background: var(--renk-ana); }
+.table td { padding: var(--bosluk-k); border-bottom: 1px solid var(--renk-kenar); }
+.row-actions { display: flex; gap: var(--bosluk-k); }
+.button-delete { background: var(--renk-hata); }
+
+@media (max-width: 699px) {
+  .table thead { display: none; }
+  .table tr { display: block; margin-bottom: var(--bosluk-m); border: 1px solid var(--renk-kenar); border-radius: var(--kose); }
+  .table td { display: block; }
+  .table td.row-actions { display: flex; }
+  .table td[data-label]::before { content: attr(data-label) ": "; font-weight: 700; }
+}

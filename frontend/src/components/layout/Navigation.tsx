@@ -1,34 +1,21 @@
-import type { PageName } from "../../types/page";
+import { NavLink } from "react-router-dom";
 
-interface NavigationProps {
-  current: PageName;
-  onNavigate: (page: PageName) => void;
-}
-
-const menuItems: { name: PageName; label: string }[] = [
-  { name: "home", label: "Home" },
-  { name: "events", label: "Events" },
-  { name: "add", label: "Add" },
+const menu = [
+  { to: "/", label: "Home" },
+  { to: "/events", label: "Events" },
+  { to: "/admin", label: "Admin" },
+  { to: "/login", label: "Login" },
 ];
 
-function Navigation({ current, onNavigate }: NavigationProps) {
+function Navigation() {
   return (
     <nav>
-      {menuItems.map((item) => (
-        <a
-          key={item.name}
-          href="#"
-          aria-current={current === item.name ? "page" : undefined}
-          onClick={(e) => {
-            e.preventDefault();
-            onNavigate(item.name);
-          }}
-        >
+      {menu.map((item) => (
+        <NavLink key={item.to} to={item.to} end={item.to === "/"}>
           {item.label}
-        </a>
+        </NavLink>
       ))}
     </nav>
   );
 }
-
 export default Navigation;

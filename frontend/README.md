@@ -1,38 +1,83 @@
-**Live URL:** https://kampus-etkinlik-sprint2-iota.vercel.app/
+**Live URL:** https://fadimekovalik-frontend.vercel.app
 
-# Campus Events (frontend)
+# Campus Events
+
+A web application where campus seminars, workshops and talks are listed, viewed, added, updated and deleted. Built step by step, one sprint per week.
 
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
 
-## Sprint 5 — React Components (current)
+## Sprint 6 + Midterm — Router, Context and Management (current)
 
-The same site as Sprint 4, but the single `App.tsx` is split into 9 components. Each component has its own file, receives data through typed `props` (`interface`), and reports events to `App` with callback props. All state stays in `App` (lifting state up). The screen is identical to Sprint 4.
+The single page app now has real addresses. `React Router` shows one page per address, `EventsContext` keeps the event list in one place for all pages, and the management pages can add, update and delete events. All forms are controlled and validated. Tagged `frontend`.
+
+### Routes
+
+| Path | Page | What it does |
+| --- | --- | --- |
+| `/` | `HomePage` | The 2 nearest upcoming events. |
+| `/events` | `EventsPage` | All events with search and category filter. |
+| `/events/:id` | `EventDetailPage` | One event; shows "Page not found" for an unknown id. |
+| `/login` | `LoginPage` | Email and password form with validation (demo, no real login). |
+| `/register` | `RegisterPage` | Name, email, password and password confirmation with validation (demo). |
+| `/forgot-password` | `ForgotPasswordPage` | Email form with validation (demo). |
+| `/admin` | `AdminPage` | Event table with Edit and Delete (asks for confirmation) and a "New event" link. |
+| `/admin/new` | `AddEventPage` | Empty event form. |
+| `/admin/:id/edit` | `EditEventPage` | Event form filled with the event's data. |
+| `*` | `NotFoundPage` | Shown for any other address. |
+
+### Structure
 
 ```
-App  (state: page, selectedId, searchText, category)
- ├─ Header        title, text?
- ├─ Navigation    current, onNavigate
- ├─ main (open page)
- │   ├─ EventList    events, onShowDetail, emptyText?   → EventCard (event, onShowDetail)
- │   ├─ EventFilter  searchText, category, categories, onSearchChange, onCategoryChange
- │   ├─ EventDetail  event, onBack, onEdit
- │   └─ EventForm    onSubmit, submitLabel?
- └─ Footer
+main.tsx  BrowserRouter > EventsProvider > App
+App       Header, Navigation, Routes (10 routes), Footer   (no state)
 ```
 
 | File | What it does |
 | --- | --- |
-| `components/layout/Header.tsx` | Shows the page title and an optional sub text. |
-| `components/layout/Navigation.tsx` | Draws the menu and tells `App` which page was clicked (`onNavigate`). |
-| `components/layout/Footer.tsx` | Footer without props. |
-| `components/events/EventCard.tsx` | One event card; "View details" calls `onShowDetail(id)`. |
-| `components/events/EventList.tsx` | Draws one `EventCard` per event, or a message when the list is empty. Used by the home page and the events page. |
-| `components/events/EventFilter.tsx` | Search box and category select; values come from props, changes go up with callbacks. |
-| `components/events/EventDetail.tsx` | One event with poster, details and the Back / Update buttons. |
-| `components/forms/EventForm.tsx` | The form used by both Add and Update pages; `onSubmit` is given by `App`. |
-| `types/page.ts` | The `PageName` type. |
-| `utils/format-date.ts` | `formatDate`, shared by `EventCard` and `EventDetail`. |
+| `context/EventsContext.tsx` | `EventsProvider` and the `useEvents` hook: the event list with `addEvent`, `updateEvent` and `deleteEvent`. Every page reads the same list, so a change is visible everywhere. |
+| `pages/*.tsx` | The 10 pages. A page reads the address and the context, then gives data to components. |
+| `components/layout/Header.tsx`, `Footer.tsx` | Title and footer, without props. |
+| `components/layout/Navigation.tsx` | Menu made with `NavLink`; the open page gets `aria-current="page"`. |
+| `components/events/EventCard.tsx` | One event card with a `Link` to the detail page. |
+| `components/events/EventList.tsx` | One `EventCard` per event, or a message when the list is empty. |
+| `components/events/EventFilter.tsx` | Search box and category select. |
+| `components/events/EventDetail.tsx` | Draws one event; the page finds it, the component only shows it. |
+| `components/forms/EventForm.tsx` | Controlled form used by Add and Update; validates on submit and shows an error under each field. |
+| `types/campus-event.ts` | `Category`, `CampusEvent`, `EventFormData` and `EventFormErrors` types. |
+| `utils/validate-event.ts` | Pure function: form data in, error object out. |
+| `utils/filter-events.ts` | `searchEvents`, `filterByCategory`, `findEventById`. |
+| `utils/format-date.ts` | `formatDate`, shared by the card, the detail and the admin table. |
+| `vercel.json` | Sends every address to `index.html` so refreshing `/events` or `/admin` does not give a 404. |
+
+Removed in this sprint: `types/page.ts` and the page state, `go()` and button props in `App.tsx`.
+
+### Form rules
+
+| Field | Rule |
+| --- | --- |
+| Title | At least 3 characters |
+| Category | Must be selected |
+| Date, time, location | Cannot be empty |
+| Capacity | Whole number from 1 to 1000 |
+| Description | At least 10 characters |
+| Login / Register | Email must contain `@`, password at least 6 characters, both passwords must match |
+
+### How to run
+
+```
+cd frontend
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # must finish without errors
+npm run preview  # open the built site
+```
+
+Deployed on Vercel (Framework Preset: Vite, Root Directory: `frontend`).
+
+## Sprint 5 — React Components
+
+The single `App.tsx` was split into 9 components with typed `props` and callback props. All state stayed in `App` (lifting state up). Tagged `sprint-05`.
 
 ## Sprint 4 — Vite, TypeScript and React
 
@@ -47,22 +92,18 @@ React + TypeScript project in the `frontend` folder: typed data, pure filter fun
 | `vite.config.ts` | Vite settings, including the React plugin. |
 | `index.html` | The only HTML page; it contains an empty `div#root`. |
 | `src/main.tsx` | Starts React and draws `App` into `div#root`. |
-| `src/App.tsx` | The main component: keeps the state and puts the components together. |
 | `src/App.css` | All styles (Sprint 3 CSS, colors and font come from the student number). |
-| `src/index.css` | Global styles; empty. |
-| `src/types/campus-event.ts` | The `Category` and `CampusEvent` types. |
 | `src/data/events.ts` | The 6 typed events. |
-| `src/utils/filter-events.ts` | Pure functions: `searchEvents`, `filterByCategory`, `findEventById`. |
 | `public/` | Files copied as they are: the event posters and the campus image. |
 
-### How to run
+## Sprint 3 — JavaScript and DOM
 
-```
-cd frontend
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # must finish without errors
-npm run preview  # open the built site
-```
+Pages generated from data with JavaScript modules (`sprint3/js`). Tagged `sprint-03`.
 
-Deployed on Vercel (Framework Preset: Vite, Root Directory: `frontend`).
+## Sprint 2 — CSS and Responsive Design
+
+`sprint2/css/2321032006.css`: `--no: 2321032006`, `--ton` = 46, font Courier New. Tagged `sprint-02`.
+
+## Sprint 1 — HTML and Git
+
+Pure HTML in `sprint1/`. Tagged `sprint-01`.

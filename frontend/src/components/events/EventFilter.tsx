@@ -1,43 +1,30 @@
 import type { Category } from "../../types/campus-event";
 
-interface EventFilterProps {
+interface Props {
   searchText: string;
+  onSearchChange: (v: string) => void;
   category: Category | "";
+  onCategoryChange: (v: Category | "") => void;
   categories: Category[];
-  onSearchChange: (text: string) => void;
-  onCategoryChange: (category: Category | "") => void;
 }
 
-function EventFilter({ searchText, category, categories, onSearchChange, onCategoryChange }: EventFilterProps) {
+function EventFilter({ searchText, onSearchChange, category, onCategoryChange, categories }: Props) {
   return (
-    <form className="filter" onSubmit={(e) => e.preventDefault()}>
+    <div className="filter">
       <div>
-        <label htmlFor="search">Search events</label>
-        <input
-          id="search"
-          type="search"
-          placeholder="e.g. workshop, career"
-          value={searchText}
-          onChange={(e) => onSearchChange(e.target.value)}
-        />
+        <label htmlFor="search">Search</label>
+        <input id="search" type="search" value={searchText}
+          onChange={(e) => onSearchChange(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="category-filter">Category</label>
-        <select
-          id="category-filter"
-          value={category}
-          onChange={(e) => onCategoryChange(e.target.value as Category | "")}
-        >
+        <label htmlFor="category">Category</label>
+        <select id="category" value={category}
+          onChange={(e) => onCategoryChange(e.target.value as Category | "")}>
           <option value="">All</option>
-          {categories.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
+          {categories.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
-    </form>
+    </div>
   );
 }
-
 export default EventFilter;
