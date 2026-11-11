@@ -7,7 +7,19 @@ A web application where campus seminars, workshops and talks are listed, viewed,
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
 
-## Sprint 6 + Midterm — Router, Context and Management (current)
+## Sprint 7 — Express REST API (current)
+
+A second app, `backend/`, serves the events as JSON with Node and Express (port 3000, data in memory). The frontend does not change in this sprint. Tagged `sprint-07`. Run commands, the REST contract and the folder structure are in [`backend/README.md`](backend/README.md).
+
+```
+cd backend
+npm install
+npm run dev      # http://localhost:3000
+```
+
+The backend is not deployed; the Vercel setup of the frontend stays the same.
+
+## Sprint 6 + Midterm — Router, Context and Management
 
 The single page app now has real addresses. `React Router` shows one page per address, `EventsContext` keeps the event list in one place for all pages, and the management pages can add, update and delete events. All forms are controlled and validated. Tagged `frontend`.
 
