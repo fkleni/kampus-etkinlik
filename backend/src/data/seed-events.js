@@ -1,6 +1,5 @@
-export const events = [
-  {
-    id: "event-1", 
+export const seedEvents = [
+ {
     title: "Career Days", 
     category: "Seminar", 
     date: "2026-10-12", 
@@ -11,7 +10,6 @@ export const events = [
     image: "/career-days.jpg" 
   },
   {
-    id: "event-2", 
     title: "Robotics Workshop", 
     category: "Workshop", 
     date: "2026-10-20", 
@@ -22,7 +20,6 @@ export const events = [
     image: "/robotics-workshop.jpg" 
   },
   {
-    id: "event-3", 
     title: "Cyber Security Talk", 
     category: "Talk", 
     date: "2026-10-27", 
@@ -33,7 +30,6 @@ export const events = [
     image: "/cyber-security-talk.jpg" 
   },
   {
-    id: "event-4", 
     title: "Web Design Workshop", 
     category: "Workshop", 
     date: "2026-11-03", 
@@ -44,7 +40,6 @@ export const events = [
     image: "/web-design-workshop.jpg" 
   },
   {
-    id: "event-5", 
     title: "Entrepreneurship Talk", 
     category: "Talk", 
     date: "2026-11-24", 
@@ -55,7 +50,6 @@ export const events = [
     image: "/entrepreneurship-talk.jpg" 
   },
   {
-    id: "event-6", 
     title: "Artificial Intelligence Seminar", 
     category: "Seminar", 
     date: "2026-12-08", 
@@ -64,5 +58,5 @@ export const events = [
     description: "An introduction to artificial intelligence and its everyday uses.", 
     capacity: 100, 
     image: "/artificial-intelligence-seminar.jpg" 
-  }
+  },
 ];
