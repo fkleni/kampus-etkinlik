@@ -1,6 +1,6 @@
-# Campus Events API (Sprint 7)
+# Campus Events API (Sprint 8)
 
-Express REST API that serves campus events as JSON. Data is kept in memory, so events added with POST are lost when the server restarts.
+Express REST API that serves campus events as JSON. Events are stored in MongoDB (Atlas) with Mongoose, so they stay after the server restarts.
 
 - **Student:** Fadime Kovalık — 2321032006
 
@@ -9,63 +9,62 @@ Express REST API that serves campus events as JSON. Data is kept in memory, so e
 ```bash
 cd backend
 npm install
-npm run dev
+cp .env.example .env     # PowerShell: Copy-Item .env.example .env
 ```
 
-The API runs at http://localhost:3000. The port comes from the `PORT` variable in `.env`. Create your `.env` from the example file first:
+Open `.env` and put your own MongoDB connection string into `MONGODB_URI` (the database name `kampus` goes at the end). Then:
 
 ```bash
-cp .env.example .env
+npm run seed    # deletes old events and adds 6 sample events
+npm run dev     # http://localhost:3000
 ```
-
-On Windows PowerShell use `Copy-Item .env.example .env`.
 
 ## Environment variables
 
-| Variable | Purpose | Default |
+| Variable | Purpose | Example |
 |---|---|---|
-| `PORT` | Port the server listens on | 3000 |
+| `PORT` | Port the server listens on | `3000` |
+| `MONGODB_URI` | MongoDB connection string (never commit the real one) | `mongodb://127.0.0.1:27017/kampus` |
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Starts the server and restarts it when a file changes |
+| `npm start` | Starts the server |
+| `npm run seed` | Empties the `events` collection and inserts 6 events (always 6, even if run twice) |
 
 ## REST Contract
 
 | Method | Endpoint | Purpose | Success | Error | Status |
 |---|---|---|---|---|---|
-| GET | /health | Check that the server is running | 200 | — | This sprint |
-| GET | /events | List events (optional `?category=`) | 200 | — | This sprint |
-| GET | /events/:id | Get one event | 200 | 404 | This sprint |
-| POST | /events | Create an event | 201 | 400 | This sprint |
+| GET | /health | Check that the server is running | 200 | — | Done |
+| GET | /events | List events (optional `?category=`) | 200 | — | Done |
+| GET | /events/:id | Get one event by MongoDB `_id` | 200 | 404 | Done |
+| POST | /events | Create an event | 201 | 400 | Done |
 | PATCH | /events/:id | Update an event | 200 | 400, 404 | Sprint 9 |
 | DELETE | /events/:id | Delete an event | 204 | 404 | Sprint 9 |
 
-### Status codes
-
-- `200` OK
-- `201` Created
-- `204` No Content
-- `400` Missing or invalid data
-- `404` Not found
+An invalid or unknown `_id` returns `404`, not `500`. Invalid body data returns `400`.
 
 ### Error format
-
-All errors use the same shape:
 
 ```json
 { "error": { "message": "Event not found" } }
 ```
 
-### GET /health response
+### Event schema
 
-```json
-{
-  "status": "ok",
-  "time": "2026-11-11T09:46:43.247Z",
-  "student": "2321032006"
-}
-```
+| Field | Rule |
+|---|---|
+| `title` | required, trimmed, 3 to 100 characters |
+| `category` | required, one of `Seminar`, `Workshop`, `Talk`, `Competition` |
+| `date` | required |
+| `capacity` | number, minimum 0, default 0 |
+| `time`, `location`, `description` | optional, trimmed; description at most 500 characters |
+| `createdAt`, `updatedAt` | added by Mongoose (`timestamps`) |
 
 ### POST /events body
-
-`title`, `category` and `date` are required. The other fields are optional.
 
 ```json
 {
@@ -84,11 +83,14 @@ All errors use the same shape:
 ```
 backend/
   src/
-    app.js                           Express app and middleware
-    server.js                        Reads .env and starts the server
+    config/database.js               Connects to MongoDB using MONGODB_URI
+    models/event-model.js            Event schema and model
+    data/seed-events.js              The 6 sample events
+    seed.js                          npm run seed
+    app.js                           Express app, middleware, error handler
+    server.js                        Connects the database, then starts the server
     routes/event-routes.js           Which address goes to which function
-    controllers/event-controller.js  Handles the request and sends the response
-    data/events.js                   In-memory events
+    controllers/event-controller.js  Reads and writes events with the Event model
   requests/kampus-api.json           Postman collection (6 requests)
   .env.example
   .gitignore

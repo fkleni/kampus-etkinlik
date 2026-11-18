@@ -7,7 +7,18 @@ A web application where campus seminars, workshops and talks are listed, viewed,
 - **Student:** Fadime Kovalık — 2321032006
 - **Course:** Web Technologies and Programming
 
-## Sprint 7 — Express REST API (current)
+## Sprint 8 — MongoDB and Mongoose (current)
+
+The events are now stored in MongoDB Atlas instead of an array in memory. The addresses of the API do not change; the controller uses the `Event` model (`find`, `findById`, `create`). The connection string comes from `MONGODB_URI` in `backend/.env` (not in the repo). `npm run seed` fills the database with 6 events. The frontend does not change. Tagged `sprint-08`. Details are in [`backend/README.md`](backend/README.md).
+
+```
+cd backend
+npm install
+npm run seed
+npm run dev      # http://localhost:3000
+```
+
+## Sprint 7 — Express REST API 
 
 A second app, `backend/`, serves the events as JSON with Node and Express (port 3000, data in memory). The frontend does not change in this sprint. Tagged `sprint-07`. Run commands, the REST contract and the folder structure are in [`backend/README.md`](backend/README.md).
 
